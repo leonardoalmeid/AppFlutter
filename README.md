@@ -1,2 +1,8 @@
-# AppFlutter
-Repo para praticar a tecnologia Flutter
+# leuzinapp
+
+App para praticar meus conhecimentos
+
+## Getting Started
+
+Para criar um novo projeto é só executar o comando abaixo:
+- flutter create --org <domain> <nomedoapp>
