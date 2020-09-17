@@ -1,6 +1,6 @@
 # leuzinapp
 
-App para praticar meus conhecimentos
+A new Flutter project.
 
 ## Getting Started
 
