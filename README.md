@@ -1,8 +1,16 @@
-# leuzinapp
+# About
 
-A new Flutter project.
+A project to demonstrate various applications developed in Flutter.
 
-## Getting Started
+**Apps list :**
 
-Para criar um novo projeto é só executar o comando abaixo:
-- flutter create --org <domain> <nomedoapp>
+- Gif Search
+- Calculator
+- People counter
+- Currency converter
+- To-do list
+
+# Dev Mobile
+
+**Name:** *Leonardo Almeida*
+**Mail:** *leoaaaquino@gmail.com*
