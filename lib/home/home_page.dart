@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,38 +21,95 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final gridCards = GridView.count(
+        // criando grid list com 3 colunas
+        crossAxisCount: 3,
+        padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
+        children: List.generate(
+          _listaApps.length,
+          (index) {
+            return GestureDetector(
+                child: Card(
+                  elevation: 10.0,
+                  child: Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.all(5.0),
+                      child: Text(
+                        _listaApps[index]["nome"],
+                        textAlign: TextAlign.center,
+                      )),
+                ),
+                onTap: () {
+                  showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    barrierColor: Colors.white24,
+                    builder: (context) {
+                      return CupertinoAlertDialog(
+                        title: Column(
+                          children: [
+                            Icon(Icons.layers_outlined,
+                                color: Colors.redAccent, size: 24.0),
+                          ],
+                        ),
+                        content: Text(
+                            'Você deseja abrir o app ${_listaApps[index]["nome"]}?'),
+                        actions: [
+                          TextButton(
+                            child: Text("Sim"),
+                            onPressed: () {
+                              _tratarRota(_listaApps[index]["rota"]);
+                            },
+                          ),
+                          TextButton(
+                            child: Text("Não"),
+                            onPressed: () {
+                              _tratarRota('');
+                            },
+                          )
+                        ],
+                      );
+                    },
+                  );
+                });
+          },
+        ));
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Apps Flutter'),
           centerTitle: true,
         ),
-        body: GridView.count(
-          // criando grid com 3 colunas
-          crossAxisCount: 3,
-          children: List.generate(_listaApps.length, (index) {
-            return Card(
-                color: Colors.white,
-                shadowColor: Colors.black,
-                child: Center(
-                  child: Text(
-                    _listaApps[index]['nome'],
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ));
-          }),
+        body: Container(
+          child: gridCards,
         ),
-        persistentFooterButtons: [
-          Container(
-              width: 900,
-              child: Center(
-                child: Text(
-                  'Criado por Leonardo Almeida',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15.0,
-                      color: Color(0xFF162A49)),
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.all(0.0),
+          height: 50.0,
+          color: Colors.white24,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.local_fire_department_outlined),
+              Text(
+                ' Dev Léo',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15.0,
                 ),
-              ))
-        ]);
+              ),
+            ],
+          ),
+        ));
+  }
+
+  Future<Null> _tratarRota(String rota) async {
+    if (rota != '') {
+      Navigator.pushNamed(context, rota);
+    } else {
+      Navigator.pop(context);
+    }
+    return null;
   }
 }

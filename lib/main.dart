@@ -10,9 +10,17 @@ import 'home/home_page.dart';
 void main() {
   runApp(MaterialApp(
     home: HomePage(),
-    // initialRoute: '/',
+    darkTheme: ThemeData(
+      primarySwatch: Colors.grey,
+      primaryColor: Colors.black,
+      brightness: Brightness.dark,
+      backgroundColor: Color(0xFF212121),
+      accentColor: Colors.white,
+      accentIconTheme: IconThemeData(color: Colors.black),
+      dividerColor: Colors.black12,
+    ),
+    themeMode: ThemeMode.dark,
     routes: {
-      // '/': (context) => HomePage(),
       '/buscarGifs': (context) => BuscarGifsScreen(),
       '/calculadora': (context) => CalculadoraScreen(),
       '/contadorPessoas': (context) => ContadorPessoasScreen(),
