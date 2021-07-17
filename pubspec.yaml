@@ -25,6 +25,7 @@ flutter:
   uses-material-design: true
   assets:
     - imgs/fundo.jpg
+    - imgs/camisaVasco.jpg
 
  # example:
   # fonts:

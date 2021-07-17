@@ -11,9 +11,9 @@ class ConversorMoedasScreen extends StatefulWidget {
 
 class ConversorMoedasScreenState extends State<ConversorMoedasScreen> {
   final url = "https://api.hgbrasil.com/finance?format=json&key=e76f6e9e";
-  final realController = TextEditingController();
-  final dolarController = TextEditingController();
-  final euroController = TextEditingController();
+  TextEditingController realController = TextEditingController();
+  TextEditingController dolarController = TextEditingController();
+  TextEditingController euroController = TextEditingController();
 
   double dolar = 0;
   double euro = 0;
@@ -37,8 +37,8 @@ class ConversorMoedasScreenState extends State<ConversorMoedasScreen> {
       return;
     }
     double real = double.parse(text);
-    dolarController.text = (real / dolar).toStringAsFixed(2);
-    euroController.text = (real / euro).toStringAsFixed(2);
+    dolarController.text = (real / this.dolar).toStringAsFixed(2);
+    euroController.text = (real / this.euro).toStringAsFixed(2);
   }
 
   void _dolarChange(String text) {
@@ -62,19 +62,15 @@ class ConversorMoedasScreenState extends State<ConversorMoedasScreen> {
   }
 
   void _clearAll() {
-    realController.text = "";
-    dolarController.text = "";
-    euroController.text = "";
+    realController.clear();
+    dolarController.clear();
+    euroController..clear();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(
-            title: Text("Conversor de Moedas"),
-            backgroundColor: Colors.amber,
-            centerTitle: true),
+        appBar: AppBar(title: Text("Conversor de Moedas"), centerTitle: true),
         body: FutureBuilder<Map>(
           future: getData(),
           builder: (context, snapshot) {
@@ -83,32 +79,34 @@ class ConversorMoedasScreenState extends State<ConversorMoedasScreen> {
               case ConnectionState.waiting:
                 return Center(
                     child: Text("Carregando dados...",
-                        style: TextStyle(color: Colors.amber, fontSize: 20.0),
+                        style: TextStyle(fontSize: 20.0),
                         textAlign: TextAlign.center));
               default:
                 if (snapshot.hasError) {
                   return Center(
                       child: Text("Erro ao carregar dados.",
-                          style: TextStyle(color: Colors.amber, fontSize: 20.0),
+                          style: TextStyle(fontSize: 20.0),
                           textAlign: TextAlign.center));
                 } else {
                   dolar = snapshot.data?["USD"]["buy"];
                   euro = snapshot.data?["EUR"]["buy"];
+                  print(dolar);
+                  print(euro);
 
                   return SingleChildScrollView(
                     padding: EdgeInsets.all(10.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Icon(Icons.monetization_on,
-                            size: 150.0, color: Colors.amber),
+                        Icon(Icons.monetization_on, size: 150.0),
                         buildTextField(
-                            "Reais", "R\$", realController, _realChange),
+                            "Reais", "R\$ ", realController, _realChange),
                         Divider(),
                         buildTextField(
-                            "Dolar", "US\$", dolarController, _dolarChange),
+                            "Dolar", "US\$ ", dolarController, _dolarChange),
                         Divider(),
-                        buildTextField("Euro", "€", euroController, _euroChange)
+                        buildTextField(
+                            "Euro", "€ ", euroController, _euroChange)
                       ],
                     ),
                   );
@@ -123,11 +121,8 @@ class ConversorMoedasScreenState extends State<ConversorMoedasScreen> {
     return TextField(
       controller: c,
       decoration: InputDecoration(
-          labelText: label,
-          labelStyle: TextStyle(color: Colors.amber),
-          border: OutlineInputBorder(),
-          prefixText: prefix),
-      style: TextStyle(color: Colors.amber, fontSize: 20.0),
+          labelText: label, border: OutlineInputBorder(), prefixText: prefix),
+      style: TextStyle(fontSize: 20.0),
       onChanged: change,
       keyboardType: TextInputType.number,
     );

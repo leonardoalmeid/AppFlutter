@@ -33,60 +33,62 @@ class ContadorPessoasScreenState extends State<ContadorPessoasScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Image.asset(
-          "imgs/fundo.jpg",
-          fit: BoxFit.cover,
-          height: 1000.0,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "Pessoas: $_people",
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: TextButton(
-                    child: Text(
-                      "+1",
-                      style: TextStyle(fontSize: 40.0, color: Colors.white),
-                    ),
-                    onPressed: () {
-                      changePeople(1);
-                    }, //função anonima
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Contador de pessoas"),
+        centerTitle: true,
+      ),
+      body:
+          // Image.asset(
+          //   "imgs/fundo.jpg",
+          //   fit: BoxFit.cover,
+          //   height: 1000.0,
+          // ),
+          Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "Pessoas: $_people",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: TextButton(
+                  child: Text(
+                    "+1",
+                    style: TextStyle(fontSize: 40.0, color: Colors.white),
                   ),
+                  onPressed: () {
+                    changePeople(1);
+                  }, //função anonima
                 ),
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: TextButton(
-                    child: Text(
-                      "-1",
-                      style: TextStyle(fontSize: 40.0, color: Colors.white),
-                    ),
-                    onPressed: () {
-                      changePeople(-1);
-                    }, //função anonima
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: TextButton(
+                  child: Text(
+                    "-1",
+                    style: TextStyle(fontSize: 40.0, color: Colors.white),
                   ),
+                  onPressed: () {
+                    changePeople(-1);
+                  }, //função anonima
                 ),
-              ],
-            ),
-            Text(
-              "$_infoText",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontStyle: FontStyle.italic,
-                  fontSize: 30.0),
-            )
-          ],
-        ),
-      ],
+              ),
+            ],
+          ),
+          Text(
+            "$_infoText",
+            style: TextStyle(
+                color: Colors.white,
+                fontStyle: FontStyle.italic,
+                fontSize: 30.0),
+          )
+        ],
+      ),
     );
   }
 }

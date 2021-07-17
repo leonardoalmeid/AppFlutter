@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'menuLateral/menuLateral_screen.dart';
+
 class HomePage extends StatefulWidget {
   static const String routeName = '/';
 
@@ -80,6 +82,7 @@ class _HomePageState extends State<HomePage> {
           title: Text('Apps Flutter'),
           centerTitle: true,
         ),
+        drawer: MenuLateralScreen(),
         body: Container(
           child: gridCards,
         ),
@@ -105,7 +108,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<Null> _tratarRota(String rota) async {
-    if (rota != '') {
+    if (rota != '' && rota != '/buscarGifs') {
       Navigator.pushNamed(context, rota);
     } else {
       Navigator.pop(context);

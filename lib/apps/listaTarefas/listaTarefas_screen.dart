@@ -62,7 +62,6 @@ class ListaTarefasScreenState extends State<ListaTarefasScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Lista de tarefas"),
-          backgroundColor: Colors.blueAccent,
           centerTitle: true,
         ),
         body: Column(
@@ -75,17 +74,10 @@ class ListaTarefasScreenState extends State<ListaTarefasScreen> {
                   Expanded(
                       child: TextField(
                           controller: _toDoController,
-                          decoration: InputDecoration(
-                              labelText: "Nova Tarefa",
-                              labelStyle:
-                                  TextStyle(color: Colors.blueAccent)))),
+                          decoration:
+                              InputDecoration(labelText: "Nova Tarefa"))),
                   // Nova botão onPress
-                  ElevatedButton(
-                      child: Text("Add"),
-                      onPressed: _addToDo,
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.blueAccent,
-                          textStyle: TextStyle(color: Colors.white)))
+                  ElevatedButton(child: Text("Adicionar"), onPressed: _addToDo)
                 ],
               ),
             ),
@@ -109,12 +101,10 @@ class ListaTarefasScreenState extends State<ListaTarefasScreen> {
       child: CheckboxListTile(
           title: Text(_toDoList[index]["title"]),
           value: _toDoList[index]["ok"],
-          secondary: Icon(
-            _toDoList[index]["ok"]
-                ? Icons.assignment_turned_in_outlined
-                : Icons.pending_actions_outlined,
-            color: Colors.black87,
-          ),
+          secondary: Icon(_toDoList[index]["ok"]
+              ? Icons.assignment_turned_in_outlined
+              : Icons.pending_actions_outlined),
+          activeColor: Colors.grey,
           onChanged: (value) {
             setState(() {
               _toDoList[index]["ok"] = value;

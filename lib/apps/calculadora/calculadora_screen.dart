@@ -66,7 +66,6 @@ class CalculadoraScreenState extends State<CalculadoraScreen> {
         appBar: AppBar(
           title: Text("Calculadora IMC"),
           centerTitle: true,
-          backgroundColor: Colors.green,
           actions: [
             IconButton(
               icon: Icon(Icons.refresh),
@@ -74,7 +73,6 @@ class CalculadoraScreenState extends State<CalculadoraScreen> {
             )
           ],
         ),
-        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
           child: Form(
@@ -82,14 +80,12 @@ class CalculadoraScreenState extends State<CalculadoraScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Icon(Icons.person_outline, size: 120.0, color: Colors.green),
+                Icon(Icons.person_outline, size: 120.0),
                 TextFormField(
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      labelText: "Peso (kg)",
-                      labelStyle: TextStyle(color: Colors.green)),
+                  decoration: InputDecoration(labelText: "Peso (kg)"),
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.green, fontSize: 25.0),
+                  style: TextStyle(fontSize: 25.0),
                   controller: pesoController,
                   validator: (value) {
                     if (value == null || value == '') {
@@ -99,11 +95,9 @@ class CalculadoraScreenState extends State<CalculadoraScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      labelText: "Altura (cm)",
-                      labelStyle: TextStyle(color: Colors.green)),
+                  decoration: InputDecoration(labelText: "Altura (cm)"),
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.green, fontSize: 25.0),
+                  style: TextStyle(fontSize: 25.0),
                   controller: alturaController,
                   validator: (value) {
                     if (value == null || value == '') {
@@ -124,14 +118,14 @@ class CalculadoraScreenState extends State<CalculadoraScreen> {
                       },
                       child: Text(
                         "Calcular",
-                        style: TextStyle(color: Colors.white, fontSize: 25.0),
+                        style: TextStyle(fontSize: 25.0),
                       ),
                     ),
                   ),
                 ),
                 Text("$_info",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.green, fontSize: 25.0))
+                    style: TextStyle(fontSize: 25.0))
               ],
             ),
           ),
