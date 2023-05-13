@@ -13,4 +13,5 @@ A project to demonstrate various applications developed in Flutter.
 # Dev Mobile
 
 **Name:** *Leonardo Almeida*
+
 **Mail:** *leoaaaquino@gmail.com*
