@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -96,7 +94,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               Icon(Icons.local_fire_department_outlined),
               Text(
-                ' Dev Léo',
+                ' Developed by Leonardo Almeida',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 15.0,
